@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="demo"></div>
+<button class="click">arr</button>
+<button class="click1">obj</button>
+
+<script>
+    let arr = [1,3,5,7];
+    let obj = [2,4,6,8];
+
+    demoP = document.getElementById("demo");
+    click = document.querySelector(".click");
+    click1 = document.querySelector(".click1");
+
+    myList(arr,demoP);
+    click.disabled = true;
+
+    click.onclick = function () {
+        demoP.innerHTML = "";
+        myList(arr,demoP);
+        click1.disabled = false;
+        click.disabled = true;
+    }
+
+    click1.onclick = function () {
+        demoP.innerHTML = "";
+        myList(obj,demoP);
+        click1.disabled = true;
+        click.disabled = false;
+    }
+
+
+    function myList(id,odiv) {
+        id.forEach(function (item, index) {
+            odiv.innerHTML = odiv.innerHTML + "<p>"+item+"</p>";
+        });
+    }
+</script>
+</body>
+</html>
