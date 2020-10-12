@@ -6,10 +6,13 @@
 </head>
 <body>
 <div id="demo"></div>
-<button class="click">arr</button>
-<button class="click1">obj</button>
+<div class="button">
+    <button class="click">arr</button>
+    <button class="click">obj</button>
+</div>
+<!--<button class="click1">obj</button>-->
 
-<script>
+<!--<script>
     let arr = [1,3,5,7];
     let obj = [2,4,6,8];
 
@@ -25,14 +28,14 @@
         myList(arr,demoP);
         click1.disabled = false;
         click.disabled = true;
-    }
+    };
 
     click1.onclick = function () {
         demoP.innerHTML = "";
         myList(obj,demoP);
         click1.disabled = true;
         click.disabled = false;
-    }
+    };
 
 
     function myList(id,odiv) {
@@ -40,6 +43,64 @@
             odiv.innerHTML = odiv.innerHTML + "<p>"+item+"</p>";
         });
     }
+</script>-->
+
+<script>
+    let arr = {
+        "data":[
+            {
+                name:"zhang-san",
+                age: 15,
+            },
+        ],
+        "li":[
+            {
+                name:"li-si",
+                age: 25,
+            }
+        ]
+    };
+
+    demoP = document.getElementById("demo");
+    click = document.querySelector(".click");
+    button = document.querySelector(".button");
+    let p = button.children;
+
+    myList(arr.data,demoP);
+
+
+    for (let i = 0;i < p.length; i++) {
+        p[0].disabled = true;
+        p[i].onclick = function () {
+            demoP.innerHTML = "";
+            if (i === 0){
+                myList(arr.data,demoP);
+                p[i].disabled = true;
+            }
+            if (i === 1){
+                myList(arr.li,demoP);
+                p[i].disabled = true;
+            }
+        }
+    } 
+
+    function myList(id,odiv) {
+        id.forEach(function (item, index) {
+            odiv.innerHTML = odiv.innerHTML + "<p>"+item.name+"</p>";
+            odiv.innerHTML = odiv.innerHTML + "<p>"+item.age+"</p>";
+        });
+    }
+
+    let siblings = function( n, elem ) {
+        let matched = [];
+        for ( ; n; n = n.nextSibling ) {
+            if ( n.nodeType === 1 && n !== elem ) {
+                matched.push( n );
+            }
+        }
+        return matched;
+    };
+    console.log(siblings((click.parentNode || {} ).firstChild,click));
 </script>
 </body>
 </html>
